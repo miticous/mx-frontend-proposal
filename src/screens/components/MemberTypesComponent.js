@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table, Space } from 'antd';
 
 const columns = [
@@ -6,7 +7,7 @@ const columns = [
     title: 'Descrição',
     dataIndex: 'description',
     key: 'description',
-    render: text => <a href="/">{text}</a>
+    render: text => <span>{text}</span>
   },
   {
     title: 'Situação',
@@ -35,6 +36,13 @@ const columns = [
   }
 ];
 
-const MemberTypesComponent = () => <Table columns={columns} dataSource={[]} />;
+const MemberTypesComponent = ({ data, isLoading }) => (
+  <>{isLoading ? <div /> : <Table columns={columns} dataSource={data} />}</>
+);
+
+MemberTypesComponent.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  isLoading: PropTypes.bool.isRequired
+};
 
 export default MemberTypesComponent;
