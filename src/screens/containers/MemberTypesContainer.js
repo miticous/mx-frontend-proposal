@@ -6,20 +6,18 @@ import MemberTypesComponent from '../components/MemberTypesComponent';
 const MemberTypesContainer = () => {
   const [
     {
-      Member: { members, isLoading }
+      Member: { memberTypes, isLoading }
     },
     dispatch
   ] = useStateValue();
 
   React.useEffect(() => {
-    Creators.getMembers(dispatch);
+    Creators.getMemberTypes(dispatch);
   }, []);
-
-  console.log(members);
 
   return (
     <div>
-      <MemberTypesComponent data={members} isLoading={isLoading} />
+      <MemberTypesComponent data={memberTypes} isLoading={isLoading} />
     </div>
   );
 };

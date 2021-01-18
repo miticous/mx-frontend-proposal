@@ -4,15 +4,26 @@ import { Table } from 'antd';
 
 const columns = [
   {
-    title: 'Descrição',
-    dataIndex: 'description',
-    key: 'description',
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id',
     render: text => <span>{text}</span>
   },
   {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name'
+  },
+  {
+    title: 'Phone',
+    dataIndex: 'phone',
+    key: 'phone'
+  },
+  {
     title: 'Situação',
-    dataIndex: 'status',
-    key: 'status'
+    dataIndex: 'MemberType.id',
+    key: 'MemberType.description',
+    render: (_, record) => <span>{record.MemberType.description}</span>
   },
   {
     title: 'Criado ás',
@@ -26,13 +37,13 @@ const columns = [
   }
 ];
 
-const MemberTypesComponent = ({ data, isLoading }) => (
+const MembersComponent = ({ data, isLoading }) => (
   <>{isLoading ? <div /> : <Table columns={columns} dataSource={data} />}</>
 );
 
-MemberTypesComponent.propTypes = {
+MembersComponent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   isLoading: PropTypes.bool.isRequired
 };
 
-export default MemberTypesComponent;
+export default MembersComponent;
