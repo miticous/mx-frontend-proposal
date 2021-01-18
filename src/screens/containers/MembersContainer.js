@@ -1,11 +1,23 @@
 import React from 'react';
+import { Creators } from '../../ducks/member';
+import { useStateValue } from '../../store';
+import MembersComponent from '../components/MembersComponent';
 
 const MembersContainer = () => {
-  console.log();
+  const [
+    {
+      Member: { members, isLoading }
+    },
+    dispatch
+  ] = useStateValue();
+
+  React.useEffect(() => {
+    Creators.getMembers(dispatch);
+  }, []);
 
   return (
     <div>
-      <p>Members</p>
+      <MembersComponent data={members} isLoading={isLoading} />
     </div>
   );
 };
